@@ -30,10 +30,10 @@
                     }
                     tmp.clear();
                 }
-                if (q.isEmpty() && tmp.size() == 1) {
-                    ans.add(tmp.poll());
-                    break;
-                }
+//                if (q.isEmpty() && tmp.size() == 1) {
+//                    ans.add(tmp.poll());
+//                    break;
+//                }
                 if(q.size() == 1 && tmp.isEmpty()){
                     ans.add(q.poll());
                     break;
