@@ -32,13 +32,12 @@ public class Main {
         st = new StringTokenizer(br.readLine());
 
         stack.addLast(new Node(Integer.parseInt(st.nextToken()), 1));
-        int ansIdx = 0;
         for (int i = 2; i <= N; i++) {
             int cur = Integer.parseInt(st.nextToken());
             if(!stack.isEmpty()) {
                 while(!stack.isEmpty()) {
                     if (cur > stack.peekLast().height) {
-                        ans[i] = ansIdx;
+                        ans[i] = 0;
                         stack.pollLast();
                     } else {
                         Node top = stack.peekLast();
