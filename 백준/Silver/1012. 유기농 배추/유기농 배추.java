@@ -53,8 +53,11 @@ public class Main {
         int[][] move = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         while (!all.isEmpty()) {
             Node cur = all.poll();
+            // 이미 방문했던 배추는 건너뛰기 (ans++ 안됨)
             if(visited[cur.r][cur.c]) continue;
             while (true) {
+                // 현재 배추와 인접한 배추들 탐색하여 인접큐에 넣어주기
+                // 방문 여부 갱신을 통해 전체 배추 큐를 탐색 할 때 이미 방문한 배추는 카운팅 하지 않게끔 처리
                 for (int dir = 0; dir < move.length; dir++) {
                     int nr = cur.r + move[dir][1];
                     int nc = cur.c + move[dir][0];
