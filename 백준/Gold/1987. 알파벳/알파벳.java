@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -10,22 +8,9 @@ public class Main {
     static StringTokenizer st;
     static int R, C;
     static char[][] board;
-    static char[][] alphabet = {{'A', 0}, {'B', 0}, {'C', 0}, {'D', 0}, {'E', 0}, {'F', 0}, {'G', 0}, {'H', 0}, {'I', 0}, {'J', 0}, {'K', 0}, {'L', 0}, {'M', 0}, {'N', 0}, {'O', 0},
-            {'P', 0}, {'Q', 0}, {'R', 0}, {'S', 0}, {'T', 0}, {'U', 0}, {'V', 0}, {'W', 0}, {'X', 0}, {'Y', 0}, {'Z', 0}};
     static boolean[] visited;
-    static Queue<Node> queue;
     static int[][] deltas = {{0,1},{0,-1},{1,0},{-1,0}};
-    static int[][] dist;
     static int ans;
-
-    static class Node{
-        int r, c;
-
-        public Node(int r, int c) {
-            this.r = r;
-            this.c = c;
-        }
-    }
 
     /**
      * A : 65
@@ -50,8 +35,6 @@ public class Main {
         }
         ans = 1;
         visited[board[0][0]-65] = true;
-        dist = new int[R][C];
-        dist[0][0] = 1;
         solution(0,0, 1);
         System.out.println(ans);
     }
@@ -63,7 +46,6 @@ public class Main {
             if(!scope(nr,nc)) continue;
             if(visited[board[nr][nc]-65]) continue;
             visited[board[nr][nc]-65] = true;
-            dist[nr][nc] = dist[r][c] + 1;
             solution(nr,nc, cnt + 1);
             visited[board[nr][nc]-65] = false;
         }
