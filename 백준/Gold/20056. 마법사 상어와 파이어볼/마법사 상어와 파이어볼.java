@@ -24,17 +24,6 @@ public class Main {
             this.s = s;
             this.d = d;
         }
-
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "r=" + r +
-                    ", c=" + c +
-                    ", m=" + m +
-                    ", s=" + s +
-                    ", d=" + d +
-                    '}';
-        }
     }
 
     public static void main(String[] args) throws IOException {
