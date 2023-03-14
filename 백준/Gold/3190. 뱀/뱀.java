@@ -15,7 +15,6 @@ public class Main {
     static boolean[][] visited;
     static final int APPLE = -1;
     static final int[][] deltas = {{1,0},{0,1},{-1,0},{0,-1}};
-    static Node head, tail;
     static int ans;
 
     static class Node {
@@ -29,16 +28,6 @@ public class Main {
             this.dir = dir;
             this.time = time;
         }
-
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "r=" + r +
-                    ", c=" + c +
-                    ", dir=" + dir +
-                    ", time=" + time +
-                    '}';
-        }
     }
 
     static class Rotate{
@@ -48,14 +37,6 @@ public class Main {
         public Rotate(int time, String dir) {
             this.time = time;
             this.dir = dir;
-        }
-
-        @Override
-        public String toString() {
-            return "Rotate{" +
-                    "time=" + time +
-                    ", dir='" + dir + '\'' +
-                    '}';
         }
     }
     public static void main(String[] args) throws Exception{
@@ -80,9 +61,8 @@ public class Main {
         }
 
         dq = new ArrayDeque<>();
-        head = new Node(1,1,0,0);
         visited[1][1] = true;
-        dq.addFirst(head);
+        dq.addFirst(new Node(1,1,0,0));
         solution();
         System.out.println(ans);
     }
@@ -92,49 +72,42 @@ public class Main {
         int time = 0;
         while(true){
             Node cur = dq.peekFirst();
-
+            
             // 회전 체크
             if(rotate != null && cur.time == rotate.time) {
-//                System.out.println(rotate);
                 if(rotate.dir.equals("D")){ // 오른쪽으로 회전
-//                    System.out.println("오른쪽으로 회전~~");
                     cur.dir = (cur.dir + 1) % 4;
                 } else { // 왼쪽으로 회전
-//                    System.out.println("왼쪽으로 회전~~");
                     cur.dir = (cur.dir + 3) % 4;
                 }
                 rotate = dirInfo.poll();
             }
 
-//            System.out.println(cur);
             time++;
             int nr = cur.r + deltas[cur.dir][1];
             int nc = cur.c + deltas[cur.dir][0];
 
             if(!scope(nr,nc)) { // 다음 이동 위치 벽
-//                System.out.println("벽이랑 부딪힘!");
                 ans = time;
                 return;
             }
             if(visited[nr][nc]){ // 다음 이동 위치 몸
-//                System.out.println("몸이랑 부딪힘!");
                 ans = time;
                 return;
             }
             if (graph[nr][nc] != APPLE) { // 다음 이동 위치 사과 아니면 꼬리 제거
-                tail = dq.pollLast();
+                Node tail = dq.pollLast();
                 visited[tail.r][tail.c] = false; // 원래 있던 꼬리 위치 제거
-            } else {
+            } else { // 사과 먹으면 사라짐
                 graph[nr][nc] = 0;
             }
-            Node tmp = new Node(nr,nc,cur.dir,time);
             visited[nr][nc] = true;
-            dq.addFirst(tmp);
+            dq.addFirst(new Node(nr,nc,cur.dir,time));
         }
     }
+
 
     private static boolean scope(int r,int c){
         return r>=1 && r<=N && c>=1 && c<=N;
     }
-
 }
