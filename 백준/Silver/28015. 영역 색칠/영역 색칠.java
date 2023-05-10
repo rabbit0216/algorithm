@@ -9,8 +9,6 @@ public class Main {
     static int R, C;
     static ArrayList<Integer>[] graph;
     static boolean[][][] visited;
-    static int cnt;
-
 
     public static void main(String[] args) throws Exception {
         st = new StringTokenizer(br.readLine());
@@ -45,6 +43,7 @@ public class Main {
             }
             boolean endZero = false;
             for (int c = 0; c < graph[r].size(); c++) {
+                // 0 기준으로 초기화
                 if (graph[r].get(c) == 0) {
                     ans += Math.min(cnt[0], cnt[1]);
                     cnt[0] = 1; cnt[1] = 1;
