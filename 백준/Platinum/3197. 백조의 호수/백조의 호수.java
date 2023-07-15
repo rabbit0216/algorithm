@@ -3,7 +3,6 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -29,14 +28,6 @@ public class Main {
         public Node(int r, int c) {
             this.r = r;
             this.c = c;
-        }
-
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "r=" + r +
-                    ", c=" + c +
-                    '}';
         }
     }
 
@@ -131,7 +122,6 @@ public class Main {
             }
         }
 
-        // nextQ에 저장된 데이터 다시 이동
         while (!nextWaterQ.isEmpty()) {
             waterQ.offer(nextWaterQ.poll());
         }
