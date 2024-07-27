@@ -37,10 +37,6 @@ public class Main {
                     ans.append(cur).append(" ");
                 }
             }
-            ans.delete(ans.length()-1,ans.length());
-            if(testCase != T-1) {
-                ans.append('\n');
-            }
             bw.write(ans.toString());
         }
         bw.flush();bw.close();
